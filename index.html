@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noboru Kuno - Senior Technical Program Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 2px solid transparent;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image i {
+            font-size: 8rem;
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .experience-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 2rem;
+            width: 15px;
+            height: 15px;
+            background: #4a90e2;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #4a90e2;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 3rem;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: #e9ecef;
+            z-index: -1;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-date {
+            color: #4a90e2;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            line-height: 1.8;
+        }
+
+        .timeline-description ul {
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            color: #4a90e2;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .timeline-item {
+                margin-left: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -1rem;
+            }
+
+            .timeline-item::after {
+                left: -0.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #4a90e2;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .publications-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Noboru Kuno</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Noboru (Sean) Kuno</h1>
+                    <p class="subtitle">Senior Technical Program Manager | Expert in AI Research | Strategic Partnerships</p>
+                    <p class="hero-description">
+                        Spearheading strategic academic engagement and managing groundbreaking AI research programs at Microsoft Research Accelerator. 
+                        Focused on multimodal foundation models, fostering innovation through academic partnerships and cross-functional collaboration.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Get In Touch
+                        </a>
+                        <a href="https://www.linkedin.com/in/noboruk/" target="_blank" class="btn btn-secondary">
+                            <i class="fab fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="about-content">
+                        <h3>Building Bridges Between Industry and Academia</h3>
+                        <p>
+                            With over 16 years at Microsoft, I specialize in strategic academic engagement and AI research program management. 
+                            My expertise lies in making industry-scale foundation models accessible to academic research, having developed 250+ projects 
+                            across various domains and established crucial networks for foundation model development and application.
+                        </p>
+                        <p>
+                            Before joining Microsoft, I gained extensive experience in cross-governmental program management at the Japan Science and 
+                            Technology Agency (JST), where I managed basic science research projects. I also have a strong background in product 
+                            development and marketing in Japan's cable and satellite industry.
+                        </p>
+                        <p>
+                            I hold Master's and Bachelor's degrees in Quantum Engineering and Systems Science from the University of Tokyo, 
+                            combining deep technical knowledge with strategic program management expertise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Core Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Research Leadership</h3>
+                        <p>Multimodal foundation models, reinforcement learning, and cutting-edge AI research program coordination</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Strategic Partnerships</h3>
+                        <p>Academic engagement, cross-functional collaboration, and strategic alliance development</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Program Management</h3>
+                        <p>Large-scale research program coordination, resource optimization, and stakeholder management</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Business Development</h3>
+                        <p>Product development, marketing strategy, and cross-governmental program execution</p>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin: 3rem 0 2rem; font-size: 2rem;">Certifications</h3>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-title">Mastering Multi-Agent Systems for Research Automation and Visualization with AutoGen</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">Complete Guide to Power BI for Data Analysts by Microsoft Press</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">Fundamentals of Reinforcement Learning</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">Natural Language Processing: NLP With Transformers in Python</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">Develop Your Skills as a Program Manager</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">August 2018 - November 2024</div>
+                        <div class="timeline-title">Senior Technical Program Manager</div>
+                        <div class="timeline-company">Microsoft Research Accelerator, Redmond, WA</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Led initiative to make industry-scale foundation models accessible to academic research, developing 250+ projects cohort across domains</li>
+                                <li>Coordinated development of 20+ impactful multimodal and robotics projects, fostering high-impact research ecosystem</li>
+                                <li>Managed strategic partnership with UC Berkeley, implementing OKR approach and establishing ROB with shared consumption dashboard</li>
+                                <li>Led academic exchanges to enhance visibility of multimodal AI platform, resulting in HoloAssist dataset creation</li>
+                                <li>Optimized Responsible AI initiative, successfully supporting 14 projects and fostering product team-academic collaborations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">June 2017 - August 2018</div>
+                        <div class="timeline-title">Research Program Manager</div>
+                        <div class="timeline-company">Microsoft Research Outreach, Redmond, WA</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Drove academic engagement on AI research platform using Minecraft, resulting in 6 NeurIPS competitions</li>
+                                <li>Led annual technology showcase featuring 40+ innovative Microsoft projects with 400+ attendees</li>
+                                <li>Championed internal Computer Vision workshop with 15+ talks across multiple R&D groups</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">February 2008 - June 2017</div>
+                        <div class="timeline-title">Research Program Manager</div>
+                        <div class="timeline-company">Microsoft Research Asia, Tokyo, Japan</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Directed strategic academic collaboration initiative in Japan, resulting in 100+ supported projects over 9 years</li>
+                                <li>Launched Microsoft Research Japan Faculty Award, integrated as first industrial award with Information Processing Society of Japan</li>
+                                <li>Increased PhD internship participation through 50+ blogs and alumni events</li>
+                                <li>Organized workshops and conferences with 500+ attendees, establishing robust research ecosystem</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">December 2003 - January 2008</div>
+                        <div class="timeline-title">Chief</div>
+                        <div class="timeline-company">Japan Science and Technology Agency, Kawaguchi, Japan</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Managed budget and evaluation of research projects in charged research areas</li>
+                                <li>Involved in setting up new research area funding for digital media technology</li>
+                                <li>Led cross-cutting funding projects and conducted research on foreign funding agencies</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 2000 - November 2003</div>
+                        <div class="timeline-title">TV Section Manager, Product Development</div>
+                        <div class="timeline-company">Mediatti Communications/J:COM, Tokyo, Japan</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Negotiated programming contracts, reducing programming costs by 11%</li>
+                                <li>Increased premium channel subscribers by 70% through strategic package development</li>
+                                <li>Developed Video-On-Demand business model and interactive television service plans</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <div class="container">
+                <h2 class="section-title">Recent Publications & Research</h2>
+                <div class="publications-list">
+                    <div class="publication-item">
+                        <div class="publication-title">Asian students shine during the International Women's Hackathon</div>
+                    </div>
+                    <div class="publication-item">
+                        <div class="publication-title">Project Malmo competition returns with student organizers and a new mission: To democratize reinforcement learning</div>
+                    </div>
+                    <div class="publication-item">
+                        <div class="publication-title">The MineRL 2019 Competition on Sample Efficient Reinforcement Learning using Human Priors</div>
+                    </div>
+                    <div class="publication-item">
+                        <div class="publication-title">MineRL sample-efficient reinforcement learning challenge—back for a second year—benefits organizers, as well as larger research community</div>
+                    </div>
+                    <div class="publication-item">
+                        <div class="publication-title">WWT brings astronomy to life for children of all ages</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:noboruk@gmail.com">noboruk@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/noboruk/" target="_blank">linkedin.com/in/noboruk</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Noboru Kuno. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Mobile menu toggle (basic implementation)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
