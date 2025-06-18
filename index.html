@@ -168,6 +168,27 @@
             text-align: center;
         }
 
+        .profile-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-caveat {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
         .about-image i {
             font-size: 8rem;
             color: #4a90e2;
@@ -370,6 +391,11 @@
                 text-align: center;
             }
 
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+            }
+
             .timeline-item {
                 margin-left: 1rem;
             }
@@ -477,7 +503,8 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-grid">
                     <div class="about-image">
-                        <i class="fas fa-user-tie"></i>
+                        <img src="images/profile.jpg" alt="Noboru Kuno - Professional headshot" class="profile-photo">
+                        <p class="photo-caveat">* This profile photo is artificially modified</p>
                     </div>
                     <div class="about-content">
                         <h3>Building Bridges Between Industry and Academia</h3>
@@ -526,24 +553,7 @@
                     </div>
                 </div>
 
-                <h3 style="text-align: center; margin: 3rem 0 2rem; font-size: 2rem;">Certifications</h3>
-                <div class="certifications-grid">
-                    <div class="cert-card">
-                        <div class="cert-title">Mastering Multi-Agent Systems for Research Automation and Visualization with AutoGen</div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-title">Complete Guide to Power BI for Data Analysts by Microsoft Press</div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-title">Fundamentals of Reinforcement Learning</div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-title">Natural Language Processing: NLP With Transformers in Python</div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-title">Develop Your Skills as a Program Manager</div>
-                    </div>
-                </div>
+
             </div>
         </section>
 
